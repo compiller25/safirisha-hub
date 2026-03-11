@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 34 94% 48%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 33% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 33% 96%;
+    --muted-foreground: 215 16% 42%;
+
+    --accent: 210 33% 94%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 24% 88%;
+    --input: 214 24% 88%;
+    --ring: 34 94% 48%;
+
+    --radius: 0.375rem;
+
+    --sidebar-background: 210 40% 98%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 34 94% 48%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 210 33% 94%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 24% 88%;
+    --sidebar-ring: 34 94% 48%;
+
+    --success: 142 69% 38%;
+    --success-foreground: 210 40% 98%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 222 47% 5%;
+    --info: 217 91% 50%;
+    --info-foreground: 210 40% 98%;
+  }
+
+  .dark {
+    --background: 222 47% 5%;
+    --foreground: 214 32% 91%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 214 32% 91%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 214 32% 91%;
+
+    --primary: 43 96% 56%;
+    --primary-foreground: 222 47% 5%;
+
+    --secondary: 217 19% 27%;
+    --secondary-foreground: 214 32% 91%;
+
+    --muted: 217 19% 27%;
+    --muted-foreground: 215 17% 46%;
+
+    --accent: 217 19% 27%;
+    --accent-foreground: 214 32% 91%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 17% 34%;
+    --input: 215 17% 34%;
+    --ring: 43 96% 56%;
+
+    --sidebar-background: 222 47% 5%;
+    --sidebar-foreground: 214 32% 91%;
+    --sidebar-primary: 43 96% 56%;
+    --sidebar-primary-foreground: 222 47% 5%;
+    --sidebar-accent: 217 19% 27%;
+    --sidebar-accent-foreground: 214 32% 91%;
+    --sidebar-border: 215 17% 34%;
+    --sidebar-ring: 43 96% 56%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 210 40% 98%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 222 47% 5%;
+    --info: 217 91% 60%;
+    --info-foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply bg-background;
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(245, 181, 37, 0.12), transparent 28%),
+      radial-gradient(circle at top right, rgba(45, 112, 247, 0.1), transparent 24%),
+      linear-gradient(180deg, rgba(9, 17, 33, 0.98), rgba(7, 12, 23, 1));
+  }
+
+  .light body {
+    background-image:
+      radial-gradient(circle at top left, rgba(245, 181, 37, 0.18), transparent 28%),
+      radial-gradient(circle at top right, rgba(45, 112, 247, 0.12), transparent 24%),
+      linear-gradient(180deg, rgba(250, 251, 253, 1), rgba(241, 245, 249, 1));
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@keyframes card-pop {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@layer utilities {
+  .task-card {
+    @apply rounded-2xl border border-border/80 bg-card/90 p-4 shadow-[0_18px_40px_rgba(0,0,0,0.18)] backdrop-blur;
+    animation: card-pop 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+
+  .panel-shell {
+    @apply rounded-3xl border border-border/70 bg-card/80 shadow-[0_30px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl;
+    animation: card-pop 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .app-frame {
+    @apply mx-auto w-full max-w-[1440px] px-4 py-4 md:px-6;
+  }
+
+  .section-label {
+    @apply text-[11px] font-semibold uppercase tracking-[0.28em] text-muted-foreground;
+  }
+
+  .metric-card {
+    @apply rounded-2xl border border-border/70 bg-secondary/35 p-4;
+    animation: card-pop 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+
+  .pop-card {
+    animation: card-pop 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+
+  .task-card:hover,
+  .metric-card:hover,
+  .pop-card:hover {
+    transform: translateY(-3px) scale(1.01);
+  }
+
+  .soft-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 34px 34px;
+  }
+
+  .status-pending {
+    @apply bg-muted/70 text-foreground;
+  }
+
+  .status-assigned {
+    @apply bg-info/20 text-info;
+  }
+
+  .status-in-transit {
+    @apply bg-primary/20 text-primary;
+  }
+
+  .status-delivered {
+    @apply bg-success/20 text-success;
+  }
+}
