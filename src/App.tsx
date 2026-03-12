@@ -23,7 +23,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>
+          <BrowserRouter basename={import.meta.env.BASE_URL}>
             <div className="flex min-h-screen flex-col">
               <div className="flex-1">
                 <Routes>
